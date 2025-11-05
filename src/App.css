@@ -97,6 +97,32 @@ body {
     border-radius: 10px;
 }
 
+.responsive-logo {
+    height: 15%;
+    /* max-width: 200px; */
+
+}
+
+@media (max-width: 768px) {
+    .responsive-logo {
+        height: 15%;
+        /* max-width: 120px; */
+        padding: 10px;
+        top: 30%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-logo {
+        height: 10%;
+        /* max-width: 100px; */
+        padding: 8px;
+        top: 35%;
+        left: 3%;
+    }
+}
+
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }

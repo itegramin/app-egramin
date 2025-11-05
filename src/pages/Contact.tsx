@@ -48,83 +48,11 @@ const Contact = () => {
   return (
     <div className="py-5">
       <Container>
-        <div className="title mb-4 text-center">
+        <div className="title mb-4">
           <h3>Contact <span>Us</span></h3>
         </div>
         
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card p-4">
-              <h5>Get in Touch</h5>
-              {submitStatus === 'success' && (
-                <Alert variant="success">Message sent successfully!</Alert>
-              )}
-              {submitStatus === 'error' && (
-                <Alert variant="danger">Failed to send message. Please try again.</Alert>
-              )}
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control 
-                    type="text" 
-                    placeholder="Enter your name" 
-                    value={formData.name}
-                    onChange={(e) => handleChange('name', e.target.value)}
-                    isInvalid={!!errors.name}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
-                </Form.Group>
-                
-                <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control 
-                    type="email" 
-                    placeholder="Enter your email" 
-                    value={formData.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
-                    isInvalid={!!errors.email}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
-                </Form.Group>
-                
-                <Form.Group className="mb-3">
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control 
-                    type="tel" 
-                    placeholder="Enter your phone number" 
-                    value={formData.phone}
-                    onChange={(e) => handleChange('phone', e.target.value)}
-                  />
-                </Form.Group>
-                
-                <Form.Group className="mb-3">
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control 
-                    as="textarea" 
-                    rows={4} 
-                    placeholder="Enter your message" 
-                    value={formData.message}
-                    onChange={(e) => handleChange('message', e.target.value)}
-                    isInvalid={!!errors.message}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
-                </Form.Group>
-                
-                <Button 
-                  variant="warning" 
-                  type="submit" 
-                  className="text-white"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-              </Form>
-            </div>
-          </div>
-          
+        <div className="row">          
           <div className="col-md-6">
             <div className="card p-4">
               <h5>Contact Information</h5>

@@ -53,7 +53,6 @@ const SERVICES = [
 const PARTNERS = [sbiLogo, licLogo, iciciLogo, hdfcLogo, nicLogo, aprbLogo]
 
 const BANNER_LOGO_STYLE = { 
-  height: '25%', 
   marginTop: '5%' 
 }
 
@@ -86,7 +85,7 @@ const Home = () => {
             {/* <img src="/assets/images/e-gramin-logo.png" className="banner-logo-img" style={{height:'35%'}} alt="Logo" /> */}
           </Carousel.Item>
         </Carousel>
-        <img src={eGraminLogo} className="banner-logo-img" style={BANNER_LOGO_STYLE} alt="Logo" />
+        <img src={eGraminLogo} className="banner-logo-img responsive-logo" style={BANNER_LOGO_STYLE} alt="Logo" />
       </div>
 
       <div className="partners py-5">
