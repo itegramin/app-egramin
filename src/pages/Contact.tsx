@@ -1,50 +1,6 @@
-import { Container, Form, Button, Alert } from 'react-bootstrap';
-import { useState, useCallback } from 'react';
+import { Container } from 'react-bootstrap';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
-  const [errors, setErrors] = useState<Record<string, string>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {}
-    if (!formData.name.trim()) newErrors.name = 'Name is required'
-    if (!formData.email.trim()) newErrors.email = 'Email is required'
-    else if (!formData.email.includes('@') || !formData.email.includes('.')) newErrors.email = 'Email is invalid'
-    if (!formData.message.trim()) newErrors.message = 'Message is required'
-    return newErrors
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const validationErrors = validateForm()
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors)
-      return
-    }
-    
-    setIsSubmitting(true)
-    setErrors({})
-    
-    try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', phone: '', message: '' })
-    } catch (error) {
-      console.error('Form submission failed:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleChange = useCallback((field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
-    if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }))
-  }, [errors])
-
   return (
     <div className="py-5">
       <Container>
