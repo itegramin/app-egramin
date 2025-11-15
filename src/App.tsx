@@ -1,36 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ErrorBoundary } from 'react-error-boundary';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Gallery from './pages/Gallery';
-import Contact from './pages/Contact';
-import ErrorPage from './pages/ErrorPage';
+import { useEffect, useState } from "react";
+import type { Schema } from "../amplify/data/resource";
+import { generateClient } from "aws-amplify/data";
+
+const client = generateClient<Schema>();
 
 function App() {
+  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+
+  useEffect(() => {
+    client.models.Todo.observeQuery().subscribe({
+      next: (data) => setTodos([...data.items]),
+    });
+  }, []);
+
+  function createTodo() {
+    client.models.Todo.create({ content: window.prompt("Todo content") });
+  }
+
   return (
-    <ErrorBoundary FallbackComponent={ErrorPage}>
-      <Router>
-        <div className="App">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </ErrorBoundary>
+    <main>
+      <h1>My todos</h1>
+      <button onClick={createTodo}>+ new</button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.content}</li>
+        ))}
+      </ul>
+      <div>
+        🥳 App successfully hosted. Try creating a new todo.
+        <br />
+        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
+          Review next step of this tutorial.
+        </a>
+      </div>
+    </main>
   );
 }
 
